@@ -43,20 +43,21 @@ window.onload = function() {
 			console.log("Clicked");
 			if(togglestate != undefined){
 				var action = togglestate.value == "true" ? 0 : 1 ;	
-
+				console.log("On Click Toggle State Defined Action:" + action);
 			}else{
 				var action = item.attributes['data-command'].value;
-
+				console.log("On  Click Toggle State Undefined Action:" + action);
 			}
 
 			action = id+''+action;
-			console.log("item.onclick function and action is: " + action);
+			console.log("Onclick function and action is: " + action);
 			//on click send the message
 			socket.emit('send', { message: action });
 			console.log("message now sent "+ action);
 
 			socket.on("callbackButton", function(data){
-				if(data.message.indexOf("received") > -1 ){					
+				if(data.message.indexOf("received") > -1 ){
+					console.log("data.message.indexOf('received'): "+ data.message.indexOf("received"));
 					if(togglestate != undefined){
 						setState(togglestate, data.state);	
 						console.log("Toggle State Defined");
