@@ -118,6 +118,7 @@ function sendMessage(message, socket){
                     console.log('stderr: ' + stderr);
                     if( stdout.indexOf("Got this response") > -1 ){
                         var state = stdout.split('Got this response ')[1].split('.')[0];
+                        console.log("Sending Message Back To Client");
                         socket.emit(
                             "callbackButton", 
                             { 
