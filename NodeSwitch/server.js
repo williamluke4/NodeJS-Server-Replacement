@@ -113,6 +113,7 @@ function sendMessage(message, socket){
     exec.execFile('../remote',
                 ['-m', message],
                 function (error, stdout, stderr) {
+                    console.log("The message is: " + message);
                     console.log('stdout: ' + stdout);
                     console.log('stderr: ' + stderr);
                     if( stdout.indexOf("Got this response") > -1 ){
