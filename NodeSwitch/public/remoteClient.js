@@ -50,20 +50,23 @@ window.onload = function() {
 			}
 
 			action = id+''+action;
-			console.log("item.onclick function and action is" + action)
+			console.log("item.onclick function and action is: " + action);
 			//on click send the message
 			socket.emit('send', { message: action });
+			console.log("message now sent "+ action);
 
 			socket.on("callbackButton", function(data){
 				if(data.message.indexOf("received") > -1 ){					
 					if(togglestate != undefined){
-						setState(togglestate, data.state);		
+						setState(togglestate, data.state);	
+						console.log("Toggle State Defined");
+						console.log("set State Call with togglestate: " + togglestate + "| date.state: " + data.state);	
 					}
-					setTimeout(function(){resetBackground(item) }, 500);
 				}
 			});
 			socket.on("callbackError", function(data){
-					console.log(data.error);
+
+					console.log("Socket Callback Error: " + JSON.stringify(data.error));
 					
 			});
 		};
