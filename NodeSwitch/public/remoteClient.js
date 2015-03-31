@@ -8,15 +8,11 @@ window.onload = function() {
 	//get the buttons id
 
 	var commands = document.getElementsByClassName("command");
-	var confirmationColor = "#8BCE9D";
-	var errorColor = "#c0392b";
 
-	function resetBackground(element){
-
-			element.style.background = "";
-	}
+	
 	function setState(itemField, state){
-		itemField.value = state == 1 ? "true" : "false";		
+		itemField.value = state == 1 ? "true" : "false";
+		console.log("setState:"+state);		
 
 	}
 	
@@ -31,6 +27,7 @@ window.onload = function() {
 
 
 		if( togglestate != undefined){
+			console.log("Toggle State Not Undefined item id: "+ id);
 			var messageState = id+''+2;
 			socket.emit('send', { message: messageState });
 			socket.on("callbackButton", function(data){
@@ -43,8 +40,7 @@ window.onload = function() {
 		}
 		item.onclick = function() {
 			// var action = item.attributes['data-command'].value ;
-			animations[item.id].turnOn();
-
+			console.log("Clicked");
 			if(togglestate != undefined){
 				var action = togglestate.value == "true" ? 0 : 1 ;	
 
@@ -54,24 +50,21 @@ window.onload = function() {
 			}
 
 			action = id+''+action;
+			console.log("item.onclick function and action is" + action)
 			//on click send the message
 			socket.emit('send', { message: action });
 
 			socket.on("callbackButton", function(data){
-				if(data.message.indexOf("received") > -1 ){
-					animations[item.id].toggleMessage(confirmationColor);					
+				if(data.message.indexOf("received") > -1 ){					
 					if(togglestate != undefined){
 						setState(togglestate, data.state);		
 					}
 					setTimeout(function(){resetBackground(item) }, 500);
 				}
-				animations[item.id].turnOff();
 			});
 			socket.on("callbackError", function(data){
 					console.log(data.error);
-					animations[item.id].toggleMessage(errorColor);
-		
-					animations[item.id].turnOff();
+					
 			});
 		};
 

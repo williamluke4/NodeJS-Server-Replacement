@@ -20,17 +20,6 @@
 	    		<div class="switches">
 					<input type="button" class= "btn btn-primary" onclick="toggle()" value="Switchs"/>
 					<div class="switchBox hidden">
-						<h3> Switch 1</h3>
-				  		<div class="gravatar transitions command"  data-id="8" data-toggleState="1">
-									
-							<div class="imgContainer">
-								<img src="images/on.png"/>
-										
-							</div>	
-									
-							<canvas height="100%" width="100%" class="circleCanvas circleSvg transitions"></canvas>
-							<div class = "message transitions"></div>
-						</div>
 						<!--OFF-->
 						<div class="gravatar transitions command"  data-id="8" data-command='0'>
 									
@@ -52,9 +41,9 @@
     			<div class="switches">
 	    			<div class="area">
 	    				<h3>Lounge</h3>
-						<div class="checkbox">
+						<div class="checkbox command" data-id="8" data-toggleState="">
 						  	<label>
-						    	<input type="checkbox" data-id="8" data-toggleState="" data-toggle="toggle">
+						    	<input type="checkbox"  data-toggle="toggle">
 						    	Light Switch 1
 						  	</label>
 						</div>
