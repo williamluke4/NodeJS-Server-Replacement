@@ -1,0 +1,51 @@
+<h1>{{> page/title}}</h1>
+{{> page/nav}}
+<h2 class="text-center">Light Switch</h2>
+	<div class="switches">	
+		<div class="switchBox">
+			<h3> Switch 1</h3>
+	  		<div class="gravatar transitions command"  data-id="2" data-toggleState="1">
+				<div class="imgContainer">
+					<img src="images/on.png"/>
+				</div>	
+
+						
+
+				<canvas height="100%" width="100%" class="circleCanvas circleSvg transitions"></canvas>
+
+				<div class = "message transitions"></div>
+
+			</div>
+
+		</div>
+
+			
+
+		<div class="switchBox">
+
+			<h3> Switch 2</h3>   
+
+	  		<div class="gravatar transitions command"  data-id="3" data-command='1'>
+
+						
+
+				<div class="imgContainer">
+
+					<img src="images/on.png"/>
+
+							
+
+				</div>	
+
+						
+
+				<canvas height="100%" width="100%" class="circleCanvas circleSvg transitions"></canvas>
+
+				<div class = "message transitions"></div>
+
+			</div>
+
+		</div>	
+
+	</div>   
+

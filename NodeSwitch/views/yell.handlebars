@@ -1,0 +1,146 @@
+<h1>{{> page/title}}</h1>
+
+{{> page/nav}}
+<style>
+canvas {
+    display: none;
+}
+.message {
+    display: none;
+} 
+
+.glyphicon {
+font-size: 3.2em;
+
+}
+.gravatar {
+	height:	;
+	padding: 0.1em;
+  	border: none;
+    height: auto; 
+	width: auto; 
+}
+.switches {
+	width: 90%;
+	margin: 0 auto;
+}
+.switchBox {
+	margin: 8px auto;
+	width: 100%;
+}
+.center {
+margin: 0 auto;
+width: 293px;
+}
+</style>
+
+
+	<div class="switches">	
+		
+		<!-- TV CONTROLS-->
+		<div class="switchBox ">
+			<h3 class="text-center">TV Controls</h3>
+
+			<div class ="center">
+				<!--LG TV Power Command Code 24-->
+		  		<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-off"  data-id="2" data-command="4">		
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+				<!--LG TV Volume Up Command Code 21-->
+		  		<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-volume-up"  data-id="2" data-command="1">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+				<!--LG TV Volume Down Command Code 23-->
+				<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-volume-down"  data-id="2" data-command='3'>
+							
+					
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>		
+				
+				</button>
+
+				<!--LG TV INPUT Command Code 25-->
+		  		<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-log-in"  data-id="2" data-command="5">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+				<!--LG TV OK Command Code 26-->
+		  		<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-ok"  data-id="2" data-command="6">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+			</div>	
+		</div>
+
+		
+		
+
+		<!--MUSIC CONTROLS-->
+		<div class="switchBox">
+			<div class="center">
+				<h3>Music Controls</h3>
+		  		<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-music"  data-id="3" data-command="1">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+				<!--Music Volume Up Command Code 33-->
+		  		<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-volume-up"  data-id="3" data-command="3">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+				<!--Music Volume Down Command Code 34-->
+				<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-volume-down"  data-id="3" data-command="4">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+				<!--Music AUX code 35-->
+				<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-record"  data-id="3" data-command="5">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+				<!--Music FM Code-->
+				<button class=".btn .btn-default gravatar transitions command glyphicon glyphicon-plane"  data-id="3" data-command="6">
+							
+					
+							
+					<canvas height="50%" width="50%" class="circleCanvas circleSvg transitions"></canvas>
+					<div class = "message transitions"></div>
+				</button>
+
+			</div>
+		</div>
+
+	</div>   
+<div style = "height:10p;"></div>
+	<iframe src="http://192.168.1.87/#remote" seamless="" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;height="100%" width="100%"></iframe> 
+

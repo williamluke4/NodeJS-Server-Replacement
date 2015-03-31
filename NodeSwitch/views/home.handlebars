@@ -1,0 +1,79 @@
+
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="col-lg-6 col-lg-offset-3">
+				<a class="navbar-brand" href="#">William Luke</a>
+				<ul class="nav navbar-nav">
+					<li id="page1btn" class="active">
+						<a  href="#"onclick="page1()">Home</a>
+					</li>
+					<li id="page2btn">
+						<a  href="#"onclick="page2()">Remote</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="pages col-xs-6 col-sm-8 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3 col-sm-offset-2">
+		<!-- Start Of Page 1 -->
+    		<div class="page"  id="page1"> 
+	    		<h1>Home</h1>
+	    		<div class="switches">
+					<input type="button" class= "btn btn-primary" onclick="toggle()" value="Switchs"/>
+					<div class="switchBox hidden">
+						<h3> Switch 1</h3>
+				  		<div class="gravatar transitions command"  data-id="8" data-toggleState="1">
+									
+							<div class="imgContainer">
+								<img src="images/on.png"/>
+										
+							</div>	
+									
+							<canvas height="100%" width="100%" class="circleCanvas circleSvg transitions"></canvas>
+							<div class = "message transitions"></div>
+						</div>
+						<!--OFF-->
+						<div class="gravatar transitions command"  data-id="8" data-command='0'>
+									
+							<div class="imgContainer">
+								<img src="images/off.png"/>
+										
+							</div>	
+									
+							<canvas height="100%" width="100%" class="circleCanvas circleSvg transitions"></canvas>
+							<div class = "message transitions"></div>
+						</div>
+					</div>
+				</div>  
+    		</div>
+    	<!-- Start Of Page 2 -->
+    		<div class="page hidden"  id="page2"> 
+    			<!-- Switches -->
+    			
+    			<div class="switches">
+	    			<div class="area">
+	    				<h3>Lounge</h3>
+						<div class="checkbox">
+						  	<label>
+						    	<input type="checkbox" data-id="8" data-toggleState="" data-toggle="toggle">
+						    	Light Switch 1
+						  	</label>
+						</div>
+						<div class="checkbox disabled">
+						  <label>
+						    <input type="checkbox" disabled data-toggle="toggle">
+						    Light Switch 2
+						  </label>
+						</div>	
+					</div>
+				<!--End Of Switches-->
+				</div>  
+				
+    		</div>
+    	<!-- End Of Page 2-->
+		</div>
+	
+
+
+
+
+	
