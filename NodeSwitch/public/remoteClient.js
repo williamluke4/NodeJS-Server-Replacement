@@ -64,6 +64,9 @@ window.onload = function() {
 						console.log("set State Call with togglestate: " + togglestate + "| date.state: " + data.state);	
 					}
 				}
+				else {
+					console.log("data.message.indexOf('received'): "+ data.message.indexOf("received"));
+				}
 			});
 			socket.on("callbackError", function(data){
 
