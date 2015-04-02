@@ -33,7 +33,7 @@ window.onload = function() {
 		$(switchid).bootstrapToggle();
 		console.log("State Checked");
 
-		    $(switchid).parent().click(function() {
+		    $(switchid).parent().unbind().click(function() {
 		      
 		      	var id = $(switchid).attr('data-id');
 		      	var toggleState = $(switchid).prop('checked');
@@ -48,10 +48,7 @@ window.onload = function() {
 						console.log("Data State is: " + data.state)				
 						setState(id, data.state);	
 					}
-					else{
-						console.log("NO REPLY")
-						$("itemID").bootstrapToggle("toggle");
-					}
+				
 				});
 
 				socket.on("callbackError", function(data){
