@@ -16,6 +16,10 @@ window.onload = function() {
 		else if(state ==0){
 			console.log("Switch: "+ itemID + " | Switched Off");
 		}
+		else{
+			console.log("NO REPLY")
+			$("itemID").bootstrapToggle("toggle");
+		}
 	}
 
 
