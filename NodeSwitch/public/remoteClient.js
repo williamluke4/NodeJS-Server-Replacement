@@ -1,81 +1,72 @@
 window.onload = function() {
-	//onload this function will initialize a connection and privide communication between server and client
- 	
 	var messages = [];
-	//connect to the server (document.domain is necessary to reach the server if the address is different from localhost)
-	var socket = io.connect(document.domain);
+	//onload this function will initialize a connection and privide communication between server and client
+ 	var socket = io.connect(document.domain);
+	var switches = $('.switches').find('input');
 
-	//get the buttons id
-
-	var commands = document.getElementsByClassName("command");
-
-	
-	function setState(itemField, state){
-		itemField.value = state == 1 ? "true" : "false";
-		console.log("setState:"+state);		
-
+	function setState(itemID, state){
+		itemField.value = state == 1 ? "true" : "false";		
+		if(state == 1) {
+			$(itemID).bootstrapToggle('on');
+			console.log("Switch: "+ itemID + "| Switched On");
+		}
+		else{
+			$(itemID).bootstrapToggle('off');
+			console.log("Switch: "+ itemID + " | Switched Off");
+		}
 	}
-	
-	Element.prototype.hasClass = function(className) {
-    	return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
-	};
 
-	[].forEach.call(commands, function(item){
-
-		var id = item.attributes['data-id'].value;
-		var togglestate = item.attributes['data-togglestate'];	
-
-
-		if( togglestate != undefined){
-			console.log("Toggle State Not Undefined item id: "+ id);
-			var messageState = id+''+2;
+	function checkState(id , dataID){
+		var messageState = dataID+''+2;
 			socket.emit('send', { message: messageState });
 			socket.on("callbackButton", function(data){
 				if(data.message.indexOf("received") > -1 ){		
 
-					setState(togglestate, data.state); 
+					setState(id, data.state); 
 				}
 			}); 
+	}
 
-		}
-		item.onclick = function() {
-			// var action = item.attributes['data-command'].value ;
-			console.log("Clicked");
-			if(togglestate != undefined){
-				var action = togglestate.value == "true" ? 0 : 1 ;	
-				console.log("On Click Toggle State Defined Action:" + action);
-			}else{
-				var action = item.attributes['data-command'].value;
-				console.log("On  Click Toggle State Undefined Action:" + action);
-			}
 
-			action = id+''+action;
-			console.log("Onclick function and action is: " + action);
-			//on click send the message
-			socket.emit('send', { message: action });
-			console.log("message now sent "+ action);
+	switches.each(function() {
 
-			socket.on("callbackButton", function(data){
-				if(data.message.indexOf("received") > -1 ){
-					console.log("data.message.indexOf('received'): "+ data.message.indexOf("received"));
-					if(togglestate != undefined){
-						setState(togglestate, data.state);	
-						console.log("Toggle State Defined");
-						console.log("set State Call with togglestate: " + togglestate + "| date.state: " + data.state);	
+		// Initial Setup
+		var switchid = '#'+ $(this).attr('id');
+		$(switchid).bootstrapToggle();
+		var dataID = $(this).attr('dataID')
+		checkState(switchid, dataID);
+		console.log("State Checked");
+
+
+		$(function() {
+
+
+		    $(switchid).change(function() {
+		      	console.log('Toggle: ' + $(this).prop('checked'));
+
+		      	var id = $(this).attr('dataID');
+		      	var toggleState = $(this).prop('checked');
+		      	var toggleAction = toggleState == "true" ? 1 : 0 ;	
+				var action = id+''+toggleAction;
+				console.log("Onclick function and action is: " + action);
+				socket.emit('send', { message: action });
+
+				socket.on("callbackButton", function(data){
+					if(data.message.indexOf("received") > -1 ){					
+						setState(id, data.state);	
+
+						setTimeout(function(){resetBackground(item) }, 500);
 					}
-				}
-				else {
-					console.log("data.message.indexOf('received'): "+ data.message.indexOf("received"));
-				}
-			});
-			socket.on("callbackError", function(data){
+				});
 
-					console.log("Socket Callback Error: " + JSON.stringify(data.error));
+				socket.on("callbackError", function(data){
+					console.log(data.error);
 					
-			});
-		};
+				});		
 
-	});
+				console.log("message now sent "+ action);
 
-
+		    })
+		})
+	})
 }
