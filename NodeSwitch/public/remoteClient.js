@@ -63,10 +63,11 @@ window.onload = function() {
 			});	
 
 			
-			socket.on("failed", function(data){
+			  	
+	});
+	socket.on("failed", function(data){
 				console.log("NO REPLY: "+ data.switchID);
 				$(data.switchID).bootstrapToggle("toggle");
 				
-			});	    	
-	});
+			});	  
 }
