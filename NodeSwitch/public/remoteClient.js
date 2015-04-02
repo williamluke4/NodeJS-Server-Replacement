@@ -56,15 +56,17 @@ window.onload = function() {
 					
 				});	
 
-				socket.off().on("failed", function(data){
+				
+
+				console.log("message now sent "+ action);
+
+		    });
+
+		    socket.on("failed", function(data){
 					console.log("NO REPLY: "+ id);
 
 					$(switchid).bootstrapToggle("toggle");
 					
 				});		
-
-				console.log("message now sent "+ action);
-
-		    });
 	});
 }
