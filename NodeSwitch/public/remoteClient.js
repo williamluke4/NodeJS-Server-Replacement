@@ -6,10 +6,7 @@ window.onload = function() {
 	socket.on('connect', function () {});
 	function setState(itemID, state){
 		clientState = $(itemID).prop("checked")
-		if(state == clientState) {
-			console.log("States are The Same")
-		}
-		else if(state ==1) {
+		if(state ==1) {
 			console.log("Switch: "+ itemID + "| Switched On");
 		}
 		

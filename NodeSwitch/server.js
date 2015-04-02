@@ -130,6 +130,16 @@ function sendMessage(message, socket, elementID){
                             });
                     }
                     
+                    else if(stdout.indexOf("NO REPLY") > -1) {
+                        console.log('NO REPLY');
+                    
+                        socket.emit(
+                            "failed", 
+                            { 
+                                switchID: elementID
+                            });
+                    
+                    }
 
                     if (error !== null) {
                         console.log('exec error: ' + error);
@@ -143,16 +153,7 @@ function sendMessage(message, socket, elementID){
                     
                     }
 
-                    else {
-                        console.log('NO REPLY');
                     
-                        socket.emit(
-                            "failed", 
-                            { 
-                                switchID: elementID
-                            });
-                    
-                    }
                 });
 }
 
