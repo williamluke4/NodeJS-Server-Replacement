@@ -32,10 +32,9 @@ window.onload = function() {
 		var switchid = '#'+ $(this).attr('id');
 		$(switchid).bootstrapToggle();
 		console.log("State Checked");
-
+		var id = $(switchid).attr('data-id');
+		    
 		    $(switchid).parent().on('click', function(event) {
-		      
-		      	var id = $(switchid).attr('data-id');
 		      	var toggleState = $(switchid).prop('checked');
 		      	var toggleAction = (toggleState == true) ? 0 : 1 ;	
 				var action = id+''+toggleAction;
@@ -43,29 +42,29 @@ window.onload = function() {
 				console.log("Sending: " + action);
 				socket.emit('send', { message: action });
 
-				socket.on("callbackButton", function(data){
-					if(data.message.indexOf("received") > -1 ){	
-						console.log("Data State is: " + data.state)				
-						setState(id, data.state);	
-					}
 				
-				});
-
-				socket.on("callbackError", function(data){
-					console.log(data.error);
-					
-				});	
-
-				
-				socket.on("failed", function(data){
-					console.log("NO REPLY: "+ id);
-					$(switchid).bootstrapToggle("toggle");
-					
-				});	
 				console.log("message now sent "+ action);
 				event.stopPropagation();
 		    });
 
-		    	
+			socket.on("callbackButton", function(data){
+				if(data.message.indexOf("received") > -1 ){	
+					console.log("Data State is: " + data.state)				
+					setState(id, data.state);	
+				}
+			
+			});
+
+			socket.on("callbackError", function(data){
+				console.log(data.error);
+				
+			});	
+
+			
+			socket.on("failed", function(data){
+				console.log("NO REPLY: "+ id);
+				$(switchid).bootstrapToggle("toggle");
+				
+			});	    	
 	});
 }
