@@ -4,6 +4,7 @@ window.onload = function() {
  	var socket = io.connect(document.domain);
 	var switches = $('.switches').find('input');
 	socket.on('connect', function () {});
+	
 	function setState(itemID, state){
 		clientState = $(itemID).prop("checked")
 		if(state ==1) {
@@ -19,7 +20,16 @@ window.onload = function() {
 
 	}
 
-
+	function checkState(id) {
+			var switchid = $(id).attr('data-id');
+			var checkaction = switchid +''+ 2
+			socket.emit('send', 
+						{ 
+							message: checkaction, 
+							switchID: id
+						});
+			console.log(checkaction);
+	}
 
 
 
@@ -31,27 +41,27 @@ window.onload = function() {
 		console.log("State Checked");
 		var id = $(switchid).attr('data-id');
 		    
-		    $(switchid).parent().on('click', function() {
-		      	var toggleState = $(switchid).prop('checked');
-		      	var toggleAction = (toggleState == true) ? 0 : 1 ;	
-				var action = id+''+toggleAction;
+	    $(switchid).parent().on('click', function() {
+	      	var toggleState = $(switchid).prop('checked');
+	      	var toggleAction = (toggleState == true) ? 0 : 1 ;	
+			var action = id+''+toggleAction;
 
-				console.log("Sending: " + action);
-				socket.emit('send', 
-							{ 
-								message: action, 
-								switchID: switchid
-							});
-				
-				console.log("message now sent "+ action);
-		    });
-
+			console.log("Sending: " + action);
+			socket.emit('send', 
+						{ 
+							message: action, 
+							switchID: switchid
+						});
 			
+			console.log("message now sent "+ action);
+	    });
 
-			socket.on("callbackError", function(data){
-				console.log(data.error);
-				
-			});	
+		
+
+		socket.on("callbackError", function(data){
+			console.log(data.error);
+			
+		});	
 
 			
 			  	
@@ -65,6 +75,7 @@ window.onload = function() {
 			
 			});
 	socket.on("failed", function(data){
+
 				console.log("NO REPLY: "+ data.switchID);
 				$(data.switchID).bootstrapToggle("toggle");
 				
