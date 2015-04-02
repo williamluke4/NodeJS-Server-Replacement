@@ -33,7 +33,7 @@ window.onload = function() {
 		$(switchid).bootstrapToggle();
 		console.log("State Checked");
 
-		    $(switchid).parent().off().on('click', function() {
+		    $(switchid).parent().on('click', function(ev) {
 		      
 		      	var id = $(switchid).attr('data-id');
 		      	var toggleState = $(switchid).prop('checked');
@@ -57,16 +57,15 @@ window.onload = function() {
 				});	
 
 				
-
+				socket.on("failed", function(ev, data){
+					console.log("NO REPLY: "+ id);
+					$(switchid).bootstrapToggle("toggle");
+					ev.stopPropagation();
+				});	
 				console.log("message now sent "+ action);
 
 		    });
 
-		    socket.on("failed", function(data){
-					console.log("NO REPLY: "+ id);
-
-					$(switchid).bootstrapToggle("toggle");
-					
-				});		
+		    	
 	});
 }
