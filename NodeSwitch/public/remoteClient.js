@@ -16,10 +16,7 @@ window.onload = function() {
 		else if(state ==0){
 			console.log("Switch: "+ itemID + " | Switched Off");
 		}
-		else{
-			console.log("NO REPLY")
-			$("itemID").bootstrapToggle("toggle");
-		}
+
 	}
 
 
@@ -47,6 +44,10 @@ window.onload = function() {
 					if(data.message.indexOf("received") > -1 ){	
 						console.log("Data State is: " + data.state)				
 						setState(id, data.state);	
+					}
+					else{
+						console.log("NO REPLY")
+						$("itemID").bootstrapToggle("toggle");
 					}
 				});
 
