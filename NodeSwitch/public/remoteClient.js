@@ -45,7 +45,7 @@ window.onload = function() {
 
 		      	var id = $(switchid).attr('data-id');
 		      	var toggleState = $(switchid).prop('checked');
-		      	console.log('Toggle: ' + toggleState));
+		      	console.log('Toggle: ' + toggleState);
 		      	var toggleAction = toggleState == true ? 1 : 0 ;	
 				var action = id+''+toggleAction;
 				console.log("Onclick function and action is: " + action);
