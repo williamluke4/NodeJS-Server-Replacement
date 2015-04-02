@@ -5,7 +5,7 @@ window.onload = function() {
 	var switches = $('.switches').find('input');
 
 	function setState(itemID, state){
-		clientState = $("itemID").prop("checked")
+		clientState = $(itemID).prop("checked")
 		if(state == clientState) {
 			console.log("States are The Same")
 		}
@@ -15,6 +15,9 @@ window.onload = function() {
 		
 		else if(state ==0){
 			console.log("Switch: "+ itemID + " | Switched Off");
+		}
+		else{
+			console.log("WHAAAT");
 		}
 
 	}
@@ -53,6 +56,8 @@ window.onload = function() {
 
 				socket.on("callbackError", function(data){
 					console.log(data.error);
+					console.log("CALL BACK ERROR");
+					$(id).bootstrapToggle("toggle");
 					
 				});		
 
