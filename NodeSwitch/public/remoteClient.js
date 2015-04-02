@@ -60,7 +60,8 @@ window.onload = function() {
 				});	
 
 				socket.on("failed", function(data){
-					console.log("NO REPLY");
+					console.log("NO REPLY: "+ id);
+
 					$(id).bootstrapToggle("toggle");
 					
 				});		
