@@ -40,11 +40,12 @@ window.onload = function() {
 		$(function() {
 
 
-		    $(switchid).change(function() {
-		      	console.log('Toggle: ' + $(this).prop('checked'));
+		    $(switchid).parent().click(function() {
+		      	
 
-		      	var id = $(this).attr('data-id');
-		      	var toggleState = $(this).prop('checked');
+		      	var id = $(switchid).attr('data-id');
+		      	var toggleState = $(switchid).prop('checked');
+		      	console.log('Toggle: ' + toggleState));
 		      	var toggleAction = toggleState == true ? 1 : 0 ;	
 				var action = id+''+toggleAction;
 				console.log("Onclick function and action is: " + action);
