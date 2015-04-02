@@ -9,8 +9,9 @@ window.onload = function() {
 		if(state == clientState) {
 			console.log("States are The Same")
 
-		else if(state ==1)
+		else if(state ==1) {
 			console.log("Switch: "+ itemID + "| Switched On");
+		}
 		}
 		else if(state ==0){
 			console.log("Switch: "+ itemID + " | Switched Off");
@@ -52,6 +53,6 @@ window.onload = function() {
 
 				console.log("message now sent "+ action);
 
-		    })
-	})
+		    });
+	});
 }
