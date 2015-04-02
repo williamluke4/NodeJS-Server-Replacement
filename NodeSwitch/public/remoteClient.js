@@ -34,17 +34,19 @@ window.onload = function() {
 		console.log("State Checked");
 		var id = $(switchid).attr('data-id');
 		    
-		    $(switchid).parent().on('click', function(event) {
+		    $(switchid).parent().on('click', function() {
 		      	var toggleState = $(switchid).prop('checked');
 		      	var toggleAction = (toggleState == true) ? 0 : 1 ;	
 				var action = id+''+toggleAction;
 
 				console.log("Sending: " + action);
-				socket.emit('send', { message: action });
-
+				socket.emit('send', 
+							{ 
+								message: action, 
+								switchID: switchid
+							});
 				
 				console.log("message now sent "+ action);
-				event.stopPropagation();
 		    });
 
 			socket.on("callbackButton", function(data){
@@ -61,9 +63,9 @@ window.onload = function() {
 			});	
 
 			
-			socket.on("failed", function(data){
-				console.log("NO REPLY: "+ id);
-				$(switchid).bootstrapToggle("toggle");
+			socket.on("failed", function(data.switchID){
+				console.log("NO REPLY: "+ data.switchID);
+				$(data.switchID).bootstrapToggle("toggle");
 				
 			});	    	
 	});

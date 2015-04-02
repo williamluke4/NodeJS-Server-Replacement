@@ -109,7 +109,7 @@ app.get('/echo/', function (req, res) {
 
 app.use(express.static('public/'));
 
-function sendMessage(message, socket){
+function sendMessage(message, socket, elementID){
     exec.execFile('../remote',
                 ['-m', message],
                 function (error, stdout, stderr) {
@@ -148,7 +148,7 @@ function sendMessage(message, socket){
                         socket.emit(
                             "failed", 
                             { 
-                                failed: "1" 
+                                switchID: elementID,
                             });
                     
                     }
@@ -164,7 +164,7 @@ var io = socket.listen(app.listen(port));
 io.sockets.on('connection', function (socket) {
     socket.on('send', function (data) {
 
-        sendMessage(data.message, socket);
+        sendMessage(data.message, socket, data.switchID);
 
     });
 });
