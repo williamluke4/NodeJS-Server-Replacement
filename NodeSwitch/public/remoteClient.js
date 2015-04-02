@@ -38,6 +38,7 @@ window.onload = function() {
 		// Initial Setup
 		var switchid = '#'+ $(this).attr('id');
 		$(switchid).bootstrapToggle();
+		checkState(switchid);
 		console.log("State Checked");
 		var id = $(switchid).attr('data-id');
 		    
