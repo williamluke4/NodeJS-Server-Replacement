@@ -5,26 +5,20 @@ window.onload = function() {
 	var switches = $('.switches').find('input');
 
 	function setState(itemID, state){
-		if(state == 1) {
-			$(itemID).bootstrapToggle('on');
+		clientState = $("itemID").prop("checked")
+		if(state == clientState) {
+			console.log("States are The Same")
+
+		else if(state ==1)
 			console.log("Switch: "+ itemID + "| Switched On");
 		}
-		else{
-			$(itemID).bootstrapToggle('off');
+		else if(state ==0){
 			console.log("Switch: "+ itemID + " | Switched Off");
 		}
 	}
 
-	function checkState(id , dataID){
-		var messageState = dataID+''+2;
-			socket.emit('send', { message: messageState });
-			socket.on("callbackButton", function(data){
-				if(data.message.indexOf("received") > -1 ){		
 
-					setState(id, data.state); 
-				}
-			}); 
-	}
+
 
 
 	switches.each(function() {
@@ -32,27 +26,21 @@ window.onload = function() {
 		// Initial Setup
 		var switchid = '#'+ $(this).attr('id');
 		$(switchid).bootstrapToggle();
-		var dataID = $(this).attr('dataID')
-		checkState(switchid, dataID);
 		console.log("State Checked");
 
-
-		$(function() {
-
-
 		    $(switchid).parent().click(function() {
-		      	
-
+		      
 		      	var id = $(switchid).attr('data-id');
 		      	var toggleState = $(switchid).prop('checked');
-		      	console.log('Toggle: ' + toggleState);
-		      	var toggleAction = toggleState == true ? 1 : 0 ;	
+		      	var toggleAction = (toggleState == true) ? 0 : 1 ;	
 				var action = id+''+toggleAction;
-				console.log("Onclick function and action is: " + action);
+
+				console.log("Sending: " + action);
 				socket.emit('send', { message: action });
 
 				socket.on("callbackButton", function(data){
-					if(data.message.indexOf("received") > -1 ){					
+					if(data.message.indexOf("received") > -1 ){	
+						console.log("Data State is: " + data.state)				
 						setState(id, data.state);	
 					}
 				});
@@ -65,6 +53,5 @@ window.onload = function() {
 				console.log("message now sent "+ action);
 
 		    })
-		})
 	})
 }
