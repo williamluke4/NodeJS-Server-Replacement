@@ -8,11 +8,11 @@ window.onload = function() {
 		clientState = $("itemID").prop("checked")
 		if(state == clientState) {
 			console.log("States are The Same")
-
+		}
 		else if(state ==1) {
 			console.log("Switch: "+ itemID + "| Switched On");
 		}
-		}
+		
 		else if(state ==0){
 			console.log("Switch: "+ itemID + " | Switched Off");
 		}
