@@ -3,7 +3,7 @@ window.onload = function() {
 	//onload this function will initialize a connection and privide communication between server and client
  	var socket = io.connect(document.domain);
 	var switches = $('.switches').find('input');
-
+	socket.on('connect', function () {});
 	function setState(itemID, state){
 		clientState = $(itemID).prop("checked")
 		if(state == clientState) {
@@ -33,7 +33,7 @@ window.onload = function() {
 		$(switchid).bootstrapToggle();
 		console.log("State Checked");
 
-		    $(switchid).parent().on('click', function(ev) {
+		    $(switchid).parent().on('click', function(event) {
 		      
 		      	var id = $(switchid).attr('data-id');
 		      	var toggleState = $(switchid).prop('checked');
@@ -57,13 +57,13 @@ window.onload = function() {
 				});	
 
 				
-				socket.on("failed", function(ev, data){
+				socket.on("failed", function(data){
 					console.log("NO REPLY: "+ id);
 					$(switchid).bootstrapToggle("toggle");
-					ev.stopPropagation();
+					
 				});	
 				console.log("message now sent "+ action);
-
+				event.stopPropagation();
 		    });
 
 		    	
