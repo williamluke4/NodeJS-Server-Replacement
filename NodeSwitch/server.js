@@ -141,6 +141,17 @@ function sendMessage(message, socket){
                             });
                     
                     }
+
+                    else {
+                        console.log('NO REPLY');
+                    
+                        socket.emit(
+                            "failed", 
+                            { 
+                                failed: "1" 
+                            });
+                    
+                    }
                 });
 }
 

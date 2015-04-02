@@ -56,7 +56,11 @@ window.onload = function() {
 
 				socket.on("callbackError", function(data){
 					console.log(data.error);
-					console.log("CALL BACK ERROR");
+					
+				});	
+
+				socket.on("failed", function(data){
+					console.log("NO REPLY");
 					$(id).bootstrapToggle("toggle");
 					
 				});		
