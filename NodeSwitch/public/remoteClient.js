@@ -56,7 +56,7 @@ window.onload = function() {
 					
 				});	
 
-				socket.on("failed", function(data){
+				socket.off().on("failed", function(data){
 					console.log("NO REPLY: "+ id);
 
 					$(switchid).bootstrapToggle("toggle");
