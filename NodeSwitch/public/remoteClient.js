@@ -33,7 +33,7 @@ window.onload = function() {
 		$(switchid).bootstrapToggle();
 		console.log("State Checked");
 
-		    $(switchid).parent().unbind().click(function() {
+		    $(switchid).parent().off().on('click', function() {
 		      
 		      	var id = $(switchid).attr('data-id');
 		      	var toggleState = $(switchid).prop('checked');
