@@ -49,13 +49,7 @@ window.onload = function() {
 				console.log("message now sent "+ action);
 		    });
 
-			socket.on("callbackButton", function(data){
-				if(data.message.indexOf("received") > -1 ){	
-					console.log("Data State is: " + data.state)				
-					setState(id, data.state);	
-				}
 			
-			});
 
 			socket.on("callbackError", function(data){
 				console.log(data.error);
@@ -65,6 +59,14 @@ window.onload = function() {
 			
 			  	
 	});
+
+	socket.on("callbackButton", function(data){
+				if(data.message.indexOf("received") > -1 ){	
+					console.log("Data State is: " + data.state)				
+					setState(data.switchID, data.state);	
+				}
+			
+			});
 	socket.on("failed", function(data){
 				console.log("NO REPLY: "+ data.switchID);
 				$(data.switchID).bootstrapToggle("toggle");

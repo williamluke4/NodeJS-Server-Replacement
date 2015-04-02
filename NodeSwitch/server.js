@@ -124,7 +124,8 @@ function sendMessage(message, socket, elementID){
                             { 
                                 message: "received", 
                                 operation: message,
-                                state: state
+                                state: state,
+                                switchID: elementID
 
                             });
                     }
@@ -148,7 +149,7 @@ function sendMessage(message, socket, elementID){
                         socket.emit(
                             "failed", 
                             { 
-                                switchID: elementID,
+                                switchID: elementID
                             });
                     
                     }
