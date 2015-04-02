@@ -5,7 +5,6 @@ window.onload = function() {
 	var switches = $('.switches').find('input');
 
 	function setState(itemID, state){
-		itemField.value = state == 1 ? "true" : "false";		
 		if(state == 1) {
 			$(itemID).bootstrapToggle('on');
 			console.log("Switch: "+ itemID + "| Switched On");
@@ -44,9 +43,9 @@ window.onload = function() {
 		    $(switchid).change(function() {
 		      	console.log('Toggle: ' + $(this).prop('checked'));
 
-		      	var id = $(this).attr('dataID');
+		      	var id = $(this).attr('data-id');
 		      	var toggleState = $(this).prop('checked');
-		      	var toggleAction = toggleState == "true" ? 1 : 0 ;	
+		      	var toggleAction = toggleState == true ? 1 : 0 ;	
 				var action = id+''+toggleAction;
 				console.log("Onclick function and action is: " + action);
 				socket.emit('send', { message: action });
@@ -54,8 +53,6 @@ window.onload = function() {
 				socket.on("callbackButton", function(data){
 					if(data.message.indexOf("received") > -1 ){					
 						setState(id, data.state);	
-
-						setTimeout(function(){resetBackground(item) }, 500);
 					}
 				});
 
