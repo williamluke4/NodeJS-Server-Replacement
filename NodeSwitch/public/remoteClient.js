@@ -40,9 +40,10 @@ window.onload = function() {
 
 		// Initial Setup
 		var switchid = '#'+ $(this).attr('id');
-		setInterval(function(switchid){ 
+		setInterval(function(){ 
     		checkState(switchid);
-    		console.log("THIS FUCKING THING RUN EVERY 10s" + switchid);
+
+    		console.log("Interval Function " + switchid);
 			}, 10000);
 		$(switchid).bootstrapToggle();
 		checkState(switchid);
