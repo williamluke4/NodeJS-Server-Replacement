@@ -26,7 +26,7 @@ window.onload = function() {
 			var state = $(switchid).prop('checked');
 			socket.emit('send', 
 						{ 
-							webstate: state;
+							webstate: state,
 							message: checkaction, 
 							switchID: id
 						});
@@ -52,7 +52,7 @@ window.onload = function() {
 			console.log("Sending: " + action);
 			socket.emit('send', 
 						{ 		
-							webstate: toggleState;
+							webstate: toggleState,
 							message: action, 
 							switchID: switchid
 						});
