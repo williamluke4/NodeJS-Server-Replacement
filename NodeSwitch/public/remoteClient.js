@@ -9,10 +9,12 @@ window.onload = function() {
 		clientState = $(itemID).prop("checked")
 		if(state ==1) {
 			console.log("Switch: "+ itemID + "| Switched On");
+			$(itemID).bootstrapToggle("on");
 		}
 		
 		else if(state ==0){
 			console.log("Switch: "+ itemID + " | Switched Off");
+			$(itemID).bootstrapToggle("off");
 		}
 		else{
 			console.log("WHAAAT");
@@ -40,12 +42,11 @@ window.onload = function() {
 
 		// Initial Setup
 		var switchid = '#'+ $(this).attr('id');
-		setInterval(function(){ 
-    		checkState(switchid);
-
-    		console.log("Interval Function " + switchid);
-			}, 10000);
 		$(switchid).bootstrapToggle();
+			//setInterval(function(){ 
+    		//checkState(switchid);
+    		//console.log("Interval Function " + switchid);
+			//}, 10000);
 		checkState(switchid);
 		console.log("State Checked");
 		var id = $(switchid).attr('data-id');
