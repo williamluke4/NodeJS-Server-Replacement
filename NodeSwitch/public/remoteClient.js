@@ -36,9 +36,14 @@ window.onload = function() {
 
 
 	switches.each(function() {
+		
 
 		// Initial Setup
 		var switchid = '#'+ $(this).attr('id');
+		setInterval(function(switchid){ 
+    		checkState(switchid);
+    		console.log("THIS FUCKING THING RUN EVERY 10s");
+			}, 10000);
 		$(switchid).bootstrapToggle();
 		checkState(switchid);
 		console.log("State Checked");
@@ -92,4 +97,5 @@ window.onload = function() {
 				}
 				
 			});	  
+
 }
