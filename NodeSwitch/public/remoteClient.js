@@ -7,12 +7,12 @@ window.onload = function() {
 	
 	function setState(itemID, state){
 		clientState = $(itemID).prop("checked")
-		if(state ==1) {
+		if(state ==1 || state == '1') {
 			console.log("Switch: "+ itemID + "| Switched On");
 			$(itemID).bootstrapToggle("on");
 		}
 		
-		else if(state ==0){
+		else if(state ==0 || state == '0'){
 			console.log("Switch: "+ itemID + " | Switched Off");
 			$(itemID).bootstrapToggle("off");
 		}
