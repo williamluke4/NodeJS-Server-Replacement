@@ -42,7 +42,7 @@ window.onload = function() {
 		var switchid = '#'+ $(this).attr('id');
 		setInterval(function(switchid){ 
     		checkState(switchid);
-    		console.log("THIS FUCKING THING RUN EVERY 10s");
+    		console.log("THIS FUCKING THING RUN EVERY 10s" + switchid);
 			}, 10000);
 		$(switchid).bootstrapToggle();
 		checkState(switchid);
