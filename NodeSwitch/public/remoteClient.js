@@ -22,9 +22,11 @@ window.onload = function() {
 
 	function checkState(id) {
 			var switchid = $(id).attr('data-id');
-			var checkaction = switchid +''+ 2
+			var checkaction = switchid +''+ 2;
+			var state = $(switchid).prop('checked');
 			socket.emit('send', 
 						{ 
+							webstate: state;
 							message: checkaction, 
 							switchID: id
 						});
@@ -49,7 +51,8 @@ window.onload = function() {
 
 			console.log("Sending: " + action);
 			socket.emit('send', 
-						{ 
+						{ 		
+							webstate: toggleState;
 							message: action, 
 							switchID: switchid
 						});
@@ -69,6 +72,7 @@ window.onload = function() {
 	});
 
 	socket.on("callbackButton", function(data){
+				$(data.switchID).attr("data-onstyle","primary");
 				if(data.message.indexOf("received") > -1 ){	
 					console.log("Data State is: " + data.state)				
 					setState(data.switchID, data.state);	
@@ -76,9 +80,14 @@ window.onload = function() {
 			
 			});
 	socket.on("failed", function(data){
-
+				$(data.switchID).attr("data-onstyle","danger");
 				console.log("NO REPLY: "+ data.switchID);
-				$(data.switchID).bootstrapToggle("toggle");
+				if (data.webstate){
+					$(data.switchID).bootstrapToggle("on");
+				}
+				else {
+					$(data.switchID).bootstrapToggle("off");
+				}
 				
 			});	  
 }

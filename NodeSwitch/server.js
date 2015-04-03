@@ -109,7 +109,7 @@ app.get('/echo/', function (req, res) {
 
 app.use(express.static('public/'));
 
-function sendMessage(message, socket, elementID){
+function sendMessage(message, socket, elementID, webState){
     exec.execFile('../remote',
                 ['-m', message],
                 function (error, stdout, stderr) {
@@ -122,6 +122,7 @@ function sendMessage(message, socket, elementID){
                         socket.emit(
                             "callbackButton", 
                             { 
+                                webstate: webState,
                                 message: "received", 
                                 operation: message,
                                 state: state,
@@ -135,7 +136,8 @@ function sendMessage(message, socket, elementID){
                     
                         socket.emit(
                             "failed", 
-                            { 
+                            {   
+                                webstate: webState,
                                 switchID: elementID
                             });
                     
@@ -166,7 +168,7 @@ var io = socket.listen(app.listen(port));
 io.sockets.on('connection', function (socket) {
     socket.on('send', function (data) {
 
-        sendMessage(data.message, socket, data.switchID);
+        sendMessage(data.message, socket, data.switchID, data.webstate);
 
     });
 });
