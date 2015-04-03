@@ -72,7 +72,8 @@ window.onload = function() {
 	});
 
 	socket.on("callbackButton", function(data){
-				$(data.switchID).attr("data-onstyle","primary");
+				$(data.switchID).siblings('div').children('.toggle-on').css("background-color", "#337ab7");
+				$(data.switchID).siblings('div').children('.toggle-off').css("background-color", "#e6e6e6");
 				if(data.message.indexOf("received") > -1 ){	
 					console.log("Data State is: " + data.state)				
 					setState(data.switchID, data.state);	
@@ -80,7 +81,8 @@ window.onload = function() {
 			
 			});
 	socket.on("failed", function(data){
-				$(data.switchID).attr("data-onstyle","danger");
+				$(data.switchID).siblings('div').children('.toggle-on').css("background-color", "red");
+				$(data.switchID).siblings('div').children('.toggle-off').css("background-color", "red");
 				console.log("NO REPLY: "+ data.switchID);
 				if (data.webstate){
 					$(data.switchID).bootstrapToggle("on");
