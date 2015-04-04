@@ -32,6 +32,11 @@ h3 {
 }
 
 .navbar-nav {
-  display: inline-block;
+  display: -webkit-box;
   margin: 0px;
+}
+.nav>li>a {
+	position: relative;
+  	display: block;
+  	padding: 15px 15px
 }
