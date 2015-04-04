@@ -47,7 +47,7 @@ window.onload = function() {
     		//checkState(switchid);
     		//console.log("Interval Function " + switchid);
 			//}, 10000);
-		checkState(switchid);
+		checkAll(socket);
 		console.log("State Checked");
 		var id = $(switchid).attr('data-id');
 		    
@@ -101,5 +101,21 @@ window.onload = function() {
 			});	  
 
 }
+function checkAll(socket) {
+	var switches = $('.switches').find('input');
+	switches.each(function() {
+		var switchid = '#'+ $(this).attr('id');
+		var checkaction = switchid +''+ 2;
+		var state = $(switchid).prop('checked');
+		socket.emit('send', 
+					{ 
+						webstate: state,
+						message: checkaction, 
+						switchID: switchidid
+					});
+		console.log(checkaction);
+	});
+}
+
 
 
