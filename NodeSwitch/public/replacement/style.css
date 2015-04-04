@@ -19,3 +19,9 @@ h3 {
 	padding: 10px;
 	border-radius: 5px;
 }
+.refresh {
+	position: absolute;
+  	top: 51px;
+  	right: 0px;
+  	border-radius: 50%;
+}
