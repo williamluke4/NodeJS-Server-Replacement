@@ -107,7 +107,7 @@ window.onload = function() {
 						{ 
 							webstate: state,
 							message: checkaction, 
-							switchID: switchidid
+							switchID: switchid
 						});
 			console.log(checkaction);
 	});
