@@ -94,7 +94,8 @@ window.onload = function () {
         var switches = $('.switches').find('input');
         switches.each(function () {
             var switchid = '#' + $(this).attr('id');
-            var checkaction = switchid + '' + 2;
+            var dataID = $(switchid).attr('data-id');
+            var checkaction = dataID + '' + 2;
             var state = $(switchid).prop('checked');
             socket.emit('send', {
                 webstate: state,
