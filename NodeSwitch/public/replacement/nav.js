@@ -13,6 +13,7 @@ function page2() {
 }
 
 function checkAll() {
+	var switches = $('.switches').find('input');
 	switches.each(function() {
 		var switchid = '#'+ $(this).attr('id');
 		var checkaction = switchid +''+ 2;
@@ -24,5 +25,4 @@ function checkAll() {
 						switchID: switchidid
 					});
 		console.log(checkaction);
-	}
-}
+	}}
