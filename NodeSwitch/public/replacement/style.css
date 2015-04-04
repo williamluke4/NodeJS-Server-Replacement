@@ -21,7 +21,9 @@ h3 {
 }
 .refresh {
 	position: absolute;
-  	top: 51px;
-  	right: 0px;
+  	top: 5px;
+ 	right: 0px;
+  	width: 30px;
   	border-radius: 50%;
+  	height: 30px;
 }

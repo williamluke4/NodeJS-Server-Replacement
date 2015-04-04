@@ -43,14 +43,11 @@ window.onload = function() {
 		// Initial Setup
 		var switchid = '#'+ $(this).attr('id');
 		$(switchid).bootstrapToggle();
-			//setInterval(function(){ 
-    		//checkState(switchid);
-    		//console.log("Interval Function " + switchid);
-			//}, 10000);
-		checkAll(socket);
+		checkState(switchid);
 		console.log("State Checked");
 		var id = $(switchid).attr('data-id');
-		    
+		
+		// On Switch Click    
 	    $(switchid).parent().on('click', function() {
 	      	var toggleState = $(switchid).prop('checked');
 	      	var toggleAction = (toggleState == true) ? 0 : 1 ;	
@@ -68,16 +65,15 @@ window.onload = function() {
 	    });
 
 		
-
+	    //On Sending Error
 		socket.on("callbackError", function(data){
 			console.log(data.error);
 			
-		});	
-
-			
-			  	
+		});		  	
 	});
 
+
+	// Message Recived
 	socket.on("callbackButton", function(data){
 				$(data.switchID).siblings('div').children('.toggle-on').css("background-color", "#337ab7");
 				$(data.switchID).siblings('div').children('.toggle-off').css("background-color", "#e6e6e6");
@@ -87,6 +83,7 @@ window.onload = function() {
 				}
 			
 			});
+	// Message Failed
 	socket.on("failed", function(data){
 				$(data.switchID).siblings('div').children('.toggle-on').css("background-color", "red");
 				$(data.switchID).siblings('div').children('.toggle-off').css("background-color", "red");
@@ -99,23 +96,25 @@ window.onload = function() {
 				}
 				
 			});	  
-
-}
-function checkAll(socket) {
-	var switches = $('.switches').find('input');
-	switches.each(function() {
-		var switchid = '#'+ $(this).attr('id');
-		var checkaction = switchid +''+ 2;
-		var state = $(switchid).prop('checked');
-		socket.emit('send', 
-					{ 
-						webstate: state,
-						message: checkaction, 
-						switchID: switchidid
-					});
-		console.log(checkaction);
+	// Onclick Of Refresh Button
+	$('.refresh').on('click', function() {
+		var switches = $('.switches').find('input');
+		switches.each(function() {
+			var switchid = '#'+ $(this).attr('id');
+			var checkaction = switchid +''+ 2;
+			var state = $(switchid).prop('checked');
+			socket.emit('send', 
+						{ 
+							webstate: state,
+							message: checkaction, 
+							switchID: switchidid
+						});
+			console.log(checkaction);
 	});
 }
+
+
+
 
 
 
