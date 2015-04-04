@@ -18,9 +18,7 @@ window.onload = function() {
 		}
 		else{
 			console.log("WHAAAT");
-		}
-
-	}
+		}}
 
 	function checkState(id) {
 			var switchid = $(id).attr('data-id');
@@ -32,8 +30,7 @@ window.onload = function() {
 							message: checkaction, 
 							switchID: id
 						});
-			console.log(checkaction);
-	}
+			console.log(checkaction);}
 
 
 
@@ -69,8 +66,7 @@ window.onload = function() {
 		socket.on("callbackError", function(data){
 			console.log(data.error);
 			
-		});		  	
-	});
+		});		  	});
 
 
 	// Message Recived
@@ -80,9 +76,8 @@ window.onload = function() {
 				if(data.message.indexOf("received") > -1 ){	
 					console.log("Data State is: " + data.state)				
 					setState(data.switchID, data.state);	
-				}
-			
-			});
+				}});
+
 	// Message Failed
 	socket.on("failed", function(data){
 				$(data.switchID).siblings('div').children('.toggle-on').css("background-color", "red");
@@ -93,9 +88,8 @@ window.onload = function() {
 				}
 				else {
 					$(data.switchID).bootstrapToggle("off");
-				}
-				
-			});	  
+				}});
+
 	// Onclick Of Refresh Button
 	$('.refresh').on('click', function() {
 		var switches = $('.switches').find('input');
@@ -109,8 +103,7 @@ window.onload = function() {
 							message: checkaction, 
 							switchID: switchid
 						});
-			console.log(checkaction);
-	});
+			console.log(checkaction);});
 }
 
 
