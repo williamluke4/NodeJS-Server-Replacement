@@ -25,4 +25,5 @@ function checkAll() {
 						switchID: switchidid
 					});
 		console.log(checkaction);
-	}}
+	});
+}

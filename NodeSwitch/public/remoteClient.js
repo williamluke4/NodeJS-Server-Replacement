@@ -103,17 +103,3 @@ window.onload = function() {
 }
 
 
-function checkAll() {
-	switches.each(function() {
-		var switchid = '#'+ $(this).attr('id');
-			var checkaction = switchid +''+ 2;
-			var state = $(switchid).prop('checked');
-			socket.emit('send', 
-						{ 
-							webstate: state,
-							message: checkaction, 
-							switchID: switchidid
-						});
-			console.log(checkaction);
-	}
-}
