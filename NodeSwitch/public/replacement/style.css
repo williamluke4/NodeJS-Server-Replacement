@@ -27,6 +27,11 @@ h3 {
   	border-radius: 50%;
   	height: 30px;
 }
-.navbar-nav{
-	display: inline-block;
+.nav>li {
+  display: inline-block;
+}
+
+.navbar-nav {
+  display: inline-block;
+  margin: 0px;
 }
